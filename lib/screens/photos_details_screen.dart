@@ -2,13 +2,10 @@
 import 'dart:isolate';
 import 'dart:developer';
 import 'dart:ui';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
-
 import 'package:permission_handler/permission_handler.dart';
-
 import 'package:webskitters_assignment/components/app_basic_layout.dart';
 import 'package:webskitters_assignment/data/controller/photo_downloader_controller.dart';
 import 'package:webskitters_assignment/data/manager/photo_donwload_manager_impl.dart';
@@ -43,7 +40,7 @@ class _PhotosDetailsScreenState extends State<PhotosDetailsScreen> {
         _port.sendPort, 'downloader_send_port');
     _port.listen((dynamic data) {
       String id = data[0];
-      DownloadTaskStatus status = DownloadTaskStatus(data[1]);
+      DownloadTaskStatus status = data[1];
       int progress = data[2];
 
       if (status == DownloadTaskStatus.complete) {
